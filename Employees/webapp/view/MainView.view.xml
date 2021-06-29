@@ -15,7 +15,7 @@
                                    text="{i18n>labelEmployee}" 
                                    class="sapUiSmallMargin"/>
                             <Input id="inputEmployee" 
-                                   value="{/EmployeeId}"
+                                   value="{jsonCountries>/EmployeeId}"
                                    maxLength="6" 
                                    width="200px" 
                                    class="sapUiSmallMarginEnd"/>
@@ -25,12 +25,12 @@
                                    class="sapUiSmallMargin"
                                    visible="true"/>       
                             <Select id="slCountry"
-                                    selectedKey="{/CountryKey}"
-                                    items="{/ListCountry}"
+                                    selectedKey="{jsonCountries>/CountryKey}"
+                                    items="{jsonCountries>/ListCountry}"
                                     forceSelection="false"
                                     visible="true">
                                 <items>
-                                    <core:Item key="{Key}" text="{Text}" />
+                                    <core:Item key="{jsonCountries>Key}" text="{jsonCountries>Text}" />
                                     <!-- <core:Item key="UK" text="{i18n>CountryUK}" />
                                     <core:Item key="ES" text="{i18n>CountryES}" /> -->
                                 </items>
@@ -48,48 +48,10 @@
                                     class="sapUiSmallMarginEnd"/> 
                         </HBox>
 
-                        <HBox >
-                            <Panel>
-                                <Table id="tableEmployee" items="{/Employees}">
-                                    <columns>
-                                        <Column >
-                                            <header>
-                                                <Label text="{i18n>tableId}"/>
-                                            </header>
-                                        </Column>
-
-                                        <Column >
-                                            <header>
-                                                <Label text="{i18n>tableName}"/>
-                                            </header>
-                                        </Column>
-
-                                        <Column >
-                                            <header>
-                                                <Label text="{i18n>tableCountry}"/>
-                                            </header>
-                                        </Column>
-
-                                        <Column >
-                                            <header>
-                                                <Label text="{i18n>tableCity}"/>
-                                            </header>
-                                        </Column>
-                                    </columns>
-
-                                    <items>
-                                        <ColumnListItem type="Active" press="showPostalCode">
-                                            <cells>
-                                                <Label text="{EmployeeID}"/>
-                                                <Label text="{LastName}, {FirstName}"/>
-                                                <Label text="{Country}"/>
-                                                <Label text="{City}"/>
-                                            </cells>
-                                        </ColumnListItem>
-                                    </items>
-                                </Table> 
-                            </Panel>
-                        </HBox>
+                        <!-- <HBox >
+                            
+                        </HBox> -->
+                        <core:Fragment fragmentName="logaligroup.Employees.fragment.TableEmployee" type="XML"/>
 
                     </content>
 				</Page>
