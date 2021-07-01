@@ -40,7 +40,7 @@
             <items>
                 <!-- <ColumnListItem type="Active" press="showPostalCode"> -->
                 <!-- <ColumnListItem type="Active" press="showOrders"> -->
-                <ColumnListItem>
+                <ColumnListItem type="Navigation" press="showEmployee">
                     <cells>
                         <Label text="{jsonEmployees>EmployeeID}"/>
                         <Label text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}"/>
