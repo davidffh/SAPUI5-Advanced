@@ -39,9 +39,17 @@ sap.ui.define([
             },
 
             showEmployeeDetails: function(category, nameEvent, path) {
+                
                 var detailView = this.getView().byId("detailEmployeeView");
                 detailView.bindElement("jsonEmployees>" + path);
                 this.getView().getModel("jsonLayout").setProperty("/ActiveKey", "TwoColumnsMidExpanded");
+
+                //modelo vacío
+                var incidenceModel = new sap.ui.model.json.JSONModel([]);
+                detailView.setModel(incidenceModel, "incidenceModel");
+                //limpia el contenido del empleado anterior
+                detailView.byId("tableIncidence").removeAllContent();
+
             }
         });
 

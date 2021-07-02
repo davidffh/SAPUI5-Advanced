@@ -161,8 +161,6 @@ sap.ui.define([
                 this.getView().addDependent(this._oDialogOrders);
             };
 
-            debugger;
-
             //Dialog binding to the context to have access to selected item data
             this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
             this._oDialogOrders.open();
