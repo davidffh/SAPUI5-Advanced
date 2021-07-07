@@ -153,7 +153,7 @@ sap.ui.define([
             //get selected controller
             var iconPressed = oEvent.getSource();
             //context from the model
-            var oContext = iconPressed.getBindingContext("jsonEmployees");
+            var oContext = iconPressed.getBindingContext("odataNorthwind");
 
             //controller attribute
             if (!this._oDialogOrders){
@@ -162,7 +162,7 @@ sap.ui.define([
             };
 
             //Dialog binding to the context to have access to selected item data
-            this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
+            this._oDialogOrders.bindElement("odataNorthwind>" + oContext.getPath());
             this._oDialogOrders.open();
               
         };
@@ -172,7 +172,8 @@ sap.ui.define([
         };
 
         function showEmployee(oEvent) {
-            var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+            debugger;
+            var path = oEvent.getSource().getBindingContext("odataNorthwind").getPath();
             this._bus.publish("flexible", "showEmployee", path);
         };
 
