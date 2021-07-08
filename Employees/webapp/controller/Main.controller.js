@@ -1,11 +1,12 @@
 // @ts-nocheck
 sap.ui.define([
-    'sap/ui/core/mvc/Controller'
+    'sap/ui/core/mvc/Controller',
+    'sap/m/MessageBox'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, MessageBox) {
         'use strict';
 
         return Controller.extend("logaligroup.Employees.controller.Main", {
@@ -98,10 +99,12 @@ sap.ui.define([
                         success: function () {
                             //llamada asincrona
                             this.onReadOdataIncidence.bind(this)(employeeId);
-                            sap.m.MessageToast.show(oResourceBundle.getText("odataSaveOK"));
+                            // sap.m.MessageToast.show(oResourceBundle.getText("odataSaveOK"));
+                            MessageBox.success(oResourceBundle.getText("odataSaveOK"));
                         }.bind(this),
                         error: function (e) {
-                            sap.m.MessageToast.show(oResourceBundle.getText("odataSaveKO"));
+                            // sap.m.MessageToast.show(oResourceBundle.getText("odataSaveKO"));
+                            MessageBox.success(oResourceBundle.getText("odataSaveKO"));
                         }.bind(this)
                     })
                 } else if (incidenceModel[data.incidenceRow].CreationDateX ||
@@ -153,6 +156,10 @@ sap.ui.define([
                         tableIncidence.removeAllContent();
 
                         for (var incidence in data.results) {
+
+                            data.results[incidence]._ValidateDate = true;
+                            data.results[incidence].EnabledSave = false;
+                            
                             var newIncidence = sap.ui.xmlfragment("logaligroup.Employees.fragment.NewIncidence", this._detailEmployeeView.getController());
                             this._detailEmployeeView.addDependent(newIncidence);
                             newIncidence.bindElement("incidenceModel>/" + incidence);
